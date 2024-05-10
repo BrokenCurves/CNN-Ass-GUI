@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guide</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Bundle JS (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%; /* 保持垂直居中 */
+            transform: translateY(-50%); /* 用于完美居中 */
+            z-index: 2; /* 确保按钮在最前 */
+        }
+
+        .carousel-control-prev {
+            left: -20px; /* 向左移动，但保留在可视区域 */
+        }
+
+        .carousel-control-next {
+            right: -20px; /* 向右移动，但保留在可视区域 */
+        }
+
+        .carousel-inner {
+            display: flex;
+            align-items: center; /* 保持垂直居中 */
+        }
+
+        .carousel-item {
+            flex: 1 0 auto;
+            margin: 0 10px; /* 保持间距 */
+            height: 235px; /* 维持固定高度 */
+            overflow-y: auto; /* 允许内容滚动 */
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #007bff; /* 维持按钮背景颜色 */
+        }
+
+/* 可回收物：这包括废纸、塑料、玻璃、金属和布料。可回收物通过综合处理回收利用，可以减少污染，节省资源。例如，回收废纸可以节约木材，回收塑料可以获得二级原料，回收金属可以减少空气和水污染。 */
+/* 厨余垃圾：厨余垃圾主要包括食物残渣、果皮、蔬菜叶等有机废弃物。这些垃圾可以进行堆肥处理，用于肥料或能源生产。 */
+/* 其他垃圾：也称为干垃圾，包括砖瓦陶瓷、渣土、卫生间废纸、纸巾等难以回收的废弃物。这些垃圾可以采取卫生填埋方式处理，有效减少对环境的污染。 */
+/* 有害垃圾：有害垃圾包括废弃的电池、荧光灯管、化学品等对人类和环境有危害的物质。这些垃圾需要特殊处理，以防止对环境造成伤害。 */
+    </style>
+
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Domestic Waste Separation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/guide">Guide</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/identify">Start</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form action="/search" method="get" class="input-group mb-3">
+                    <input type="text" name="search" class="form-control" placeholder="Search waste categories">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="text-center p-4">
+                                <p>Recyclables: This includes paper, plastic, glass, metal, and fabric. Recyclables can be reprocessed to reduce pollution and save resources. For example, recycling paper saves wood, recycling plastic yields secondary raw materials, and recycling metals reduces air and water pollution.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="text-center p-4">
+                                <p>Food Waste: Food waste mainly includes food scraps, fruit peels, vegetable leaves, and other organic waste. This type of waste can be composted to produce fertilizer or energy.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="text-center p-4">
+                                <p>Other Waste: Also known as dry waste, this includes bricks, tiles, ceramics, dirt, bathroom waste paper, tissues, and other hard-to-recycle materials. These can be disposed of by sanitary landfill to reduce environmental pollution.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="text-center p-4">
+                                <p>Hazardous Waste: Hazardous waste includes discarded batteries, fluorescent tubes, chemicals, and other materials harmful to humans and the environment. Such waste requires special handling to prevent environmental damage.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                
+                <ul class="list-group">
+                    {% for category in categories %}
+                        <li class="list-group-item">{{ category.name }}: {{ category.description }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

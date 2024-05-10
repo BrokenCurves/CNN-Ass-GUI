@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header, nav, div {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+nav a {
+    margin-right: 10px;
+}
+
+.mb-2 {
+    margin-bottom: 10px; /* 或者根据需要调整 */
+}
+
