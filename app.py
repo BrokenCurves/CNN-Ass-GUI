@@ -45,7 +45,7 @@ def analyze():
     detected_objects = [result['name'] for result in results_data]
 
     # Draw boxes on the image and save it
-    save_path = 'path/to/save/detected_image.jpg'  # Specify the path where you want to save the image
+    save_path = 'temp/detected_image.jpg'  # Specify the path where you want to save the image
     img_with_boxes = draw_boxes_and_save(img, results_data, save_path)
 
     img_byte_arr = io.BytesIO()
