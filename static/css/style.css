@@ -1,3 +1,4 @@
+/* 基本样式 */
 body {
     font-family: Arial, sans-serif;
 }
@@ -16,4 +17,14 @@ nav a {
     margin-bottom: 10px; /* 可调整 */
 }
 
+/* 响应式调整 */
+@media (max-width: 768px) {
+    button {
+        padding: 15px 30px;  /* 在小屏幕上增大按钮的填充 */
+        font-size: 18px;  /* 在小屏幕上增大字体大小 */
+    }
 
+    .navbar-nav {
+        font-size: 16px; /* 增大导航链接的字体大小 */
+    }
+}
