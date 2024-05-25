@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for
 from flask import Flask, request, jsonify
 import torch
-from yolov5 import utils  # YOLOv5 的工具库
+from yolov5 import utils  # YOLOv5 的工具库w
 from PIL import Image
 import io
 import base64
@@ -12,48 +12,48 @@ app = Flask(__name__)
 
 def get_waste_category_map():
     categories = [
-        {'name': 'Plastic bowls and pots', 'description': 'Recyclable'},
-        {'name': 'Plastic hangers', 'description': 'Recyclable'},
-        {'name': 'Chargers', 'description': 'Recyclable'},
-        {'name': 'Bags', 'description': 'Recyclable'},
-        {'name': 'Cosmetic bottles', 'description': 'Recyclable'},
-        {'name': 'Cans', 'description': 'Recyclable'},
-        {'name': 'Pillows', 'description': 'Recyclable'},
-        {'name': 'Stuffed Animals', 'description': 'Recyclable'},
-        {'name': 'Shampoo Bottles', 'description': 'Recyclable'},
-        {'name': 'Plastic Toys', 'description': 'Recyclable'},
-        {'name': 'Courier Bags', 'description': 'Recyclable'},
-        {'name': 'Plugs and Cords', 'description': 'Recyclable'},
-        {'name': 'Used Clothes', 'description': 'Recyclable'},
-        {'name': 'Cutting Boards', 'description': 'Recyclable'},
-        {'name': 'Cardboard Boxes', 'description': 'Recyclable'},
-        {'name': 'Seasoning bottles', 'description': 'Recyclable'},
-        {'name': 'Wine Bottles', 'description': 'Recyclable'},
-        {'name': 'Glasses', 'description': 'Recyclable'},
-        {'name': 'Shoes', 'description': 'Recyclable'},
-        {'name': 'Metal food cans', 'description': 'Recyclable'},
-        {'name': 'Pots', 'description': 'Recyclable'},
-        {'name': 'Cooking oil drums', 'description': 'Recyclable'},
-        {'name': 'bones', 'description': 'Food Waste'},
-        {'name': 'fruit peelings', 'description': 'Food Waste'},
-        {'name': 'fruit pulp', 'description': 'Food Waste'},
-        {'name': 'Tea Leaf Dregs', 'description': 'Food Waste'},
-        {'name': 'vegetable leaves and roots', 'description': 'Food Waste'},
-        {'name': 'leftovers', 'description': 'Food Waste'},
-        {'name': 'Eggshells', 'description': 'Food Waste'},
-        {'name': 'fish bones', 'description': 'Food Waste'},
-        {'name': 'cigarette butts', 'description': 'Other Waste'},
-        {'name': 'toothpicks', 'description': 'Other Waste'},
-        {'name': 'disposable fast food containers', 'description': 'Other Waste'},
-        {'name': 'stained plastics', 'description': 'Other Waste'},
-        {'name': 'broken flower pots and bowls', 'description': 'Other Waste'},
-        {'name': 'bamboo chopsticks', 'description': 'Other Waste'},
-        {'name': 'Bottles', 'description': 'Recyclable'},
-        {'name': 'dry batteries', 'description': 'Hazardous Waste'},
-        {'name': 'ointment', 'description': 'Hazardous Waste'},
-        {'name': 'expired medicines', 'description': 'Hazardous Waste'}
+        {'name': 'Plastic bowls and pots', 'description': 'Recyclable', 'display': 'Plastic bowls and pots'}, 
+        {'name': 'Plastic hangers', 'description': 'Recyclable', 'display': 'Plastic hangers'},
+        {'name': 'Chargers', 'description': 'Recyclable', 'display': 'Chargers'},
+        {'name': 'Bags', 'description': 'Recyclable', 'display': 'Bags'},
+        {'name': 'Cosmetic bottles', 'description': 'Recyclable', 'display': 'Glass bottles'},
+        {'name': 'Cans', 'description': 'Recyclable', 'display': 'Cans'},
+        {'name': 'Pillows', 'description': 'Recyclable', 'display': 'Cans'},
+        {'name': 'Stuffed Animals', 'description': 'Recyclable', 'display': 'Stuffed toys'},
+        {'name': 'Shampoo Bottles', 'description': 'Recyclable', 'display': 'Plastic Bottles'},
+        {'name': 'Plastic Toys', 'description': 'Recyclable', 'display': 'Plastic Toys'},
+        {'name': 'Courier Bags', 'description': 'Recyclable', 'display': 'Bags'},
+        {'name': 'Plugs and Cords', 'description': 'Recyclable', 'display': 'Plugs and Cords'},
+        {'name': 'Used Clothes', 'description': 'Recyclable', 'display': 'Used Clothes'},
+        {'name': 'Cutting Boards', 'description': 'Recyclable', 'display': 'Cutting Boards'},
+        {'name': 'Cardboard Boxes', 'description': 'Recyclable', 'display': 'Cardboard Boxes'},
+        {'name': 'Seasoning bottles', 'description': 'Recyclable', 'display': 'Glass bottles'},
+        {'name': 'Wine Bottles', 'description': 'Recyclable', 'display': 'Glass bottles'},
+        {'name': 'Glasses', 'description': 'Recyclable', 'display': 'Glasses'},
+        {'name': 'Shoes', 'description': 'Recyclable', 'display': 'Shoes'},
+        {'name': 'Metal food cans', 'description': 'Recyclable', 'display': 'Cans'},
+        {'name': 'Pots', 'description': 'Recyclable', 'display': 'Pots'},
+        {'name': 'Cooking oil drums', 'description': 'Recyclable', 'display': 'Cooking oil drums'},
+        {'name': 'bones', 'description': 'Food Waste', 'display': 'Bones'},
+        {'name': 'fruit peelings', 'description': 'Food Waste', 'display': 'Fruit peelings'},
+        {'name': 'fruit pulp', 'description': 'Food Waste', 'display': 'Fruit pulp'},
+        {'name': 'Tea Leaf Dregs', 'description': 'Food Waste', 'display': 'Tea Leaf Dregs'},
+        {'name': 'vegetable leaves and roots', 'description': 'Food Waste', 'display': 'Vegetable leaves/roots'},
+        {'name': 'leftovers', 'description': 'Food Waste', 'display': 'Leftovers'},
+        {'name': 'Eggshells', 'description': 'Food Waste', 'display': 'Eggshells'},
+        {'name': 'fish bones', 'description': 'Food Waste', 'display': 'Fish bones'},
+        {'name': 'cigarette butts', 'description': 'Other Waste', 'display': 'Cigarette butts'},
+        {'name': 'toothpicks', 'description': 'Other Waste', 'display': 'Toothpicks'},
+        {'name': 'disposable fast food containers', 'description': 'Other Waste', 'display': 'Disposable fast food containers'},
+        {'name': 'stained plastics', 'description': 'Other Waste', 'display': 'Stained plastics'},
+        {'name': 'broken flower pots and bowls', 'description': 'Other Waste', 'display': 'Broken flower pots/bowls'},
+        {'name': 'bamboo chopsticks', 'description': 'Other Waste', 'display': 'Chopsticks'},
+        {'name': 'Bottles', 'description': 'Recyclable', 'display': 'Plastic Bottles'},
+        {'name': 'dry batteries', 'description': 'Hazardous Waste', 'display': 'Batteries'},
+        {'name': 'Ointment', 'description': 'Hazardous Waste', 'display': 'Medicines'},
+        {'name': 'expired medicines', 'description': 'Hazardous Waste', 'display': 'Medicines'}
     ]
-    return {item['name']: item['description'] for item in categories}
+    return {item['name']: {'description': item['description'], 'display': item['display']} for item in categories}
 
 
 
@@ -77,7 +77,7 @@ def draw_boxes(image, boxes):
     return image
 
 # 加载模型
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt')  # 确保路径正确
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='best-400.pt') 
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
@@ -94,20 +94,22 @@ def analyze():
     detected_objects = []
     for result in results_data:
         obj_name = result['name']
-        category = waste_map.get(obj_name, 'Unknown')  # Default to 'Unknown' if not found
-        detected_objects.append(f"{obj_name} ({category})")
+        category_info = waste_map.get(obj_name, {'description': 'Unknown', 'display': obj_name})  # Default to name if not found
+        detected_objects.append({
+            'display': category_info['display'],
+            'category': category_info['description']
+        })
 
     # Draw boxes on the image and save it
-    save_path = 'temp/detected_image.jpg'  # Specify the path where you want to save the image
+    save_path = 'temp/detected_image.jpg'
     img_with_boxes = draw_boxes_and_save(img, results_data, save_path)
 
     img_byte_arr = io.BytesIO()
     img_with_boxes.save(img_byte_arr, format='JPEG')
     encoded_img = base64.b64encode(img_byte_arr.getvalue()).decode('ascii')
-    print("Encoded image data: ", encoded_img[:100])  # 打印一小部分以确认数据
     return jsonify({
         'image': 'data:image/jpeg;base64,' + encoded_img,
-        'result': ', '.join(detected_objects) if detected_objects else "No objects detected"
+        'results': detected_objects
     })
 
 

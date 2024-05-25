@@ -1,30 +1,43 @@
-/* 基本样式 */
-body {
-    font-family: Arial, sans-serif;
+/* 确保视频和图像容器样式 */
+#video, #resultImage {
+    width: 300px !important;
+    height: 300px !important;
+    object-fit: cover !important;
+    border: 1px solid #ccc !important;
+    margin: auto !important;
 }
 
-header, nav, div {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
+/* 居中容器内的所有内容，增加更具体的选择器 */
+.body-custom .container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-nav a {
-    margin-right: 10px;
+/* 调整按钮和输入框的居中对齐，增加 !important 确保样式应用 */
+.body-custom .col-12 {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
 }
 
-.mb-2 {
-    margin-bottom: 10px; /* 可调整 */
+/* 增强按钮视觉反馈 */
+.body-custom button, .body-custom #uploadTrigger {
+    cursor: pointer !important;
+    margin-top: 20px !important;
+    width: 80% !important; /* 控制宽度以适应设计 */
 }
 
-/* 响应式调整 */
 @media (max-width: 768px) {
-    button {
-        padding: 15px 30px;  /* 在小屏幕上增大按钮的填充 */
-        font-size: 18px;  /* 在小屏幕上增大字体大小 */
+    .body-custom button {
+        padding: 15px 30px !important;  /* 增大按钮的填充 */
+        font-size: 18px !important;  /* 增大字体大小 */
     }
 
-    .navbar-nav {
-        font-size: 16px; /* 增大导航链接的字体大小 */
+    .body-custom .navbar-nav {
+        font-size: 16px !important; /* 增大导航链接的字体大小 */
     }
 }
+
